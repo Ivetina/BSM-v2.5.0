@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>BSM v2.5.0 - Brain Startup Manager</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="app-container">
+        <!-- Header -->
+        <div class="header">
+            <div class="header-left">
+                <span class="logo">🧠</span>
+                <div class="title-section">
+                    <h1>Brain Startup Manager</h1>
+                    <span class="version">v2.5.0</span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="status-indicator" id="main-status">
+                    <span class="status-dot healthy"></span>
+                    <span>System Ready</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Navigation Tabs -->
+        <div class="nav-tabs">
+            <button class="tab-btn active" data-tab="dashboard">📊 Dashboard</button>
+            <button class="tab-btn" data-tab="health">💓 Health Monitor</button>
+            <button class="tab-btn" data-tab="llm">🤖 LLM Services</button>
+            <button class="tab-btn" data-tab="mcp">🔗 MCP Servers</button>
+            <button class="tab-btn" data-tab="logs">📋 Logs</button>
+            <button class="tab-btn" data-tab="config">⚙️ Settings</button>
+        </div>
+
+        <!-- Tab Content -->
+        <div class="content">
+            <!-- Dashboard Tab -->
+            <div class="tab-content active" id="dashboard">
+                <div class="services-overview">
+                    <div class="overview-stats">
+                        <div class="stat-card">
+                            <div class="stat-number" id="running-count">0</div>
+                            <div class="stat-label">Running Services</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="total-count">0</div>
+                            <div class="stat-label">Total Services</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="healthy-count">0</div>
+                            <div class="stat-label">Healthy</div>
+                        </div>
+                        <div class="stat-card">
+                            <div class="stat-number" id="error-count">0</div>
+                            <div class="stat-label">Errors</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="services-grid" id="services-grid">
+                    <!-- Services will be populated here -->
+                </div>
+            </div>
+
+            <!-- Health Monitor Tab -->
+            <div class="tab-content" id="health">
+                <div class="health-controls">
+                    <button class="btn btn-primary" id="refresh-health">🔄 Refresh All</button>
+                    <button class="btn btn-secondary" id="start-all">▶️ Start All</button>
+                    <button class="btn btn-warning" id="stop-all">⏹️ Stop All</button>
+                </div>
+                <div class="health-grid" id="health-grid">
+                    <!-- Health cards will be populated here -->
+                </div>
+            </div>
+
+            <!-- LLM Services Tab -->
+            <div class="tab-content" id="llm">
+                <div class="llm-section">
+                    <h3>🤖 Multi-LLM Orchestration</h3>
+                    <div class="llm-grid" id="llm-grid">
+                        <!-- LLM services will be populated here -->
+                    </div>
+                </div>
+                <div class="llm-testing">
+                    <h3>🧪 LLM Testing Interface</h3>
+                    <div class="test-controls">
+                        <select id="llm-select">
+                            <option value="">Select LLM Service</option>
+                        </select>
+                        <textarea id="test-prompt" placeholder="Enter test prompt..."></textarea>
+                        <button class="btn btn-primary" id="test-llm">Test LLM</button>
+                    </div>
+                    <div class="test-results" id="test-results">
+                        <!-- Test results will appear here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- MCP Servers Tab -->
+            <div class="tab-content" id="mcp">
+                <div class="mcp-section">
+                    <h3>🔗 Model Context Protocol Servers</h3>
+                    <div class="mcp-grid" id="mcp-grid">
+                        <!-- MCP servers will be populated here -->
+                    </div>
+                </div>
+            </div>
+
+            <!-- Logs Tab -->
+            <div class="tab-content" id="logs">
+                <div class="logs-controls">
+                    <select id="log-level">
+                        <option value="all">All Levels</option>
+                        <option value="error">Error</option>
+                        <option value="warn">Warning</option>
+                        <option value="info">Info</option>
+                    </select>
+                    <button class="btn btn-warning" id="clear-logs">Clear Logs</button>
+                </div>
+                <div class="logs-container">
+                    <pre id="logs-content">BSM v2.5.0 initialized successfully...
+🧠 Brain Startup Manager started
+📊 Loading services configuration...
+✅ 29 services loaded
+🔧 System tray initialized
+💓 Health monitoring active</pre>
+                </div>
+            </div>
+
+            <!-- Settings Tab -->
+            <div class="tab-content" id="config">
+                <div class="config-sections">
+                    <div class="config-section">
+                        <h4>🔧 Service Configuration</h4>
+                        <div class="config-grid">
+                            <div class="config-item">
+                                <label>Auto-start services:</label>
+                                <input type="checkbox" id="auto-start" checked>
+                            </div>
+                            <div class="config-item">
+                                <label>Health check interval (seconds):</label>
+                                <input type="number" id="health-interval" value="30">
+                            </div>
+                            <div class="config-item">
+                                <label>System tray minimization:</label>
+                                <input type="checkbox" id="tray-minimize" checked>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="config-section">
+                        <h4>🤖 LLM Configuration</h4>
+                        <div class="config-grid">
+                            <div class="config-item">
+                                <label>Default LLM timeout (ms):</label>
+                                <input type="number" id="llm-timeout" value="30000">
+                            </div>
+                            <div class="config-item">
+                                <label>Enable LLM monitoring:</label>
+                                <input type="checkbox" id="llm-monitoring" checked>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Footer -->
+        <div class="footer">
+            <div class="footer-left">
+                <span id="status-text">Ready</span>
+            </div>
+            <div class="footer-right">
+                <span>MyBrainDev Platform © I.Bacak 2025</span>
+                <span id="last-update">Last Update: --</span>
+            </div>
+        </div>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
