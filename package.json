@@ -1,0 +1,54 @@
+{
+  "name": "bsm-desktop-v2.5.0",
+  "version": "2.5.0",
+  "description": "Brain Startup Manager v.2.5.0 - Desktop Application with Advanced AI RAG",
+  "main": "src/main-test.js",
+  "scripts": {
+    "start": "electron .",
+    "start-test": "electron src/main-test.js",
+    "start-full": "electron src/main.js",
+    "dev": "electron . --inspect",
+    "build": "electron-builder",
+    "build-win": "electron-builder --win",
+    "pack": "electron-builder --dir",
+    "test": "node test-desktop.js",
+    "test-rag": "node src/test-rag.js"
+  },
+  "author": "MyBrainDev Team",
+  "license": "MIT",
+  "devDependencies": {
+    "electron": "^28.0.0",
+    "electron-builder": "^24.9.1"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.39.0",
+    "dotenv": "^16.3.1",
+    "winston": "^3.11.0",
+    "node-cron": "^3.0.3",
+    "express": "^4.18.2",
+    "cors": "^2.8.5"
+  },
+  "build": {
+    "appId": "com.mybraindev.bsm-desktop",
+    "productName": "BSM Desktop v.2.5.0",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "src/**/*",
+      "assets/**/*",
+      "node_modules/**/*",
+      "package.json"
+    ],
+    "win": {
+      "target": "nsis",
+      "icon": "assets/bsm-icon.ico"
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": true,
+      "createStartMenuShortcut": true
+    }
+  }
+}
